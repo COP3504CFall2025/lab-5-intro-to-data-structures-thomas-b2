@@ -25,3 +25,29 @@ public:
     //Getters
     std::size_t getSize() const noexcept override;
 };
+
+template<typename T>
+void LLS<T>::push(const T &item) {
+    list.addHead(item);
+}
+
+template<typename T>
+T LLS<T>::pop() {
+    T data = list.getHead();
+    list.removeHead();
+    return data;
+}
+
+template<typename T>
+T LLS<T>::peek() const {
+    T data = list.getHead();
+    return data;
+}
+
+template<typename T>
+std::size_t LLS<T>::getSize() const noexcept {
+    return list.getCount();
+}
+
+
+
