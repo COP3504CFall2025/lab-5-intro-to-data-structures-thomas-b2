@@ -108,19 +108,25 @@ public:
 
     T peek() const override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("Empty ABS");
+            throw std::runtime_error("empty ABS");
         }
         return array_[curr_size_ - 1];
     }
 
     T pop() override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("Empty ABS");
+            throw std::runtime_error("empty ABS");
         }
         T value = array_[curr_size_ - 1];
         curr_size_--;
         if (curr_size_ <= capacity_/4) {
             capacity_ /= 2;
+            T* new_array = new T[capacity_];
+            for (size_t i = 0; i < curr_size_; i++) {
+                new_array[i] = array_[i];
+            }
+            delete[] array_;
+            array_ = new_array;
         }
         return value;
     }
