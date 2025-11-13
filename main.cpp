@@ -19,6 +19,7 @@
 */
 
 int main() {
+    ABS<int> a;
 
 
     return 0;
