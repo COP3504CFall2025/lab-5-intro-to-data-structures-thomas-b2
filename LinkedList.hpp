@@ -152,7 +152,9 @@ public:
 		count = 0;
 	}
 	LinkedList(const LinkedList<T>& list) {
-		Clear();
+		head = nullptr;
+		tail = nullptr;
+		count = 0;
 		for (Node<T>* node = list.head; node != nullptr; node = node->next) {
 			addTail(node->data);
 		}
