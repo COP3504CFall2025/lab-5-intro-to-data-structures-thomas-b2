@@ -33,7 +33,7 @@ void LLS<T>::push(const T &item) {
 
 template<typename T>
 T LLS<T>::pop() {
-    if (list.head) {
+    if (list.getHead()) {
         T data = list.getHead()->data;
         list.removeHead();
         return data;
@@ -44,7 +44,7 @@ T LLS<T>::pop() {
 
 template<typename T>
 T LLS<T>::peek() const {
-    if (list.head) {
+    if (list.getHead()) {
         return list.getHead()->data;;
     }
     throw std::runtime_error("empty yoogit not allowed");
