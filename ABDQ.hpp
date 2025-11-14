@@ -99,17 +99,17 @@ public:
         back_ = 0;
     }
 
-    void ensureCapacity(ABDQ& abdq) {
-        abdq.capacity_ *= 2;
+    void ensureCapacity() {
+        capacity_ *= 2;
     }
-    void shrinkIfNeeded(ABDQ& abdq) {
-        abdq.capacity_ /= 2;
+    void shrinkIfNeeded() {
+        capacity_ /= 2;
     }
 
     // Insertion
     void pushFront(const T& item) override {
         if (size_ == capacity_) {
-            ensureCapacity(this);
+            ensureCapacity();
             T* new_data_ = new T[capacity_];
             for (int i = size_ - 1; i >= 0; i--) {
                 new_data_[i+1] = data_[i];
@@ -127,7 +127,7 @@ public:
     }
     void pushBack(const T& item) override {
         if (size_ == capacity_) {
-            ensureCapacity(this);
+            ensureCapacity();
             T* new_array = new T[capacity_];
             for (size_t i = 0; i < size_; i++) {
                 new_array[i] = data_[i];
@@ -151,16 +151,13 @@ public:
         data_[size_ - 1] = T();
         size_--;
         if (size_ <= capacity_/4) {
-            shrinkIfNeeded(this);
+            shrinkIfNeeded();
             T* new_array = new T[capacity_];
             for (size_t i = 0; i < size_; i++) {
                 new_array[i] = data_[i];
             }
             delete[] data_;
             data_ = new_array;
-        }
-        if (size_ <= capacity_/4) {
-            shrinkIfNeeded(this);
         }
         return data;
     }
