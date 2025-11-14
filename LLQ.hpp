@@ -34,15 +34,20 @@ void LLQ<T>::enqueue(const T &item) {
 
 template<typename T>
 T LLQ<T>::dequeue() {
-    T data = list.getHead()->data;
-    list.removeHead();
-    return data;
+    if (list.head) {
+        T data = list.getHead()->data;
+        list.removeHead();
+        return data;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>
 T LLQ<T>::peek() const {
-    T data = list.getHead()->data;
-    return data;
+    if (list.head) {
+        return list.getHead()->data;;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>

@@ -45,26 +45,38 @@ void LLDQ<T>::pushBack(const T& item) {
 
 template<typename T>
 T LLDQ<T>::popFront() {
-    T data = list.getHead()->data;
-    list.removeHead();
-    return data;
+    if (list.head) {
+        T data = list.getHead()->data;
+        list.removeHead();
+        return data;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>
 T LLDQ<T>::popBack() {
-    T data = list.getTail()->data;
-    list.removeTail();
-    return data;
+    if (list.head) {
+        T data = list.getTail()->data;
+        list.removeTail();
+        return data;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>
 const T& LLDQ<T>::front() const {
-    return list.getHead()->data;
+    if (list.head) {
+        return list.getHead()->data;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>
 const T& LLDQ<T>::back() const {
-    return list.getTail()->data;
+    if (list.head) {
+        return list.getTail()->data;
+    }
+    throw std::runtime_error("empty yoogit not allowed");
 }
 
 template<typename T>
