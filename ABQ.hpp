@@ -124,7 +124,7 @@ public:
         }
         array_[curr_size_ - 1] = T();
         curr_size_--;
-        if (curr_size_ <= capacity_/4) {
+        /*if (curr_size_ <= capacity_/4) {
             capacity_ /= 2;
             T* new_array = new T[capacity_];
             for (size_t i = 0; i < curr_size_; i++) {
@@ -132,7 +132,7 @@ public:
             }
             delete[] array_;
             array_ = new_array;
-        }
+        }*/
         if (curr_size_ <= capacity_/4) {
             capacity_ /= 2;
         }
