@@ -37,7 +37,11 @@ public:
 	LinkedList<T>& operator=(const LinkedList<T>& rhs);
 
 	// Construction/Destruction
-	LinkedList();
+	LinkedList() {
+		head = nullptr;
+		tail = nullptr;
+		count = 0;
+	}
 	LinkedList(const LinkedList<T>& list);
 	LinkedList(LinkedList<T>&& other) noexcept;
 	~LinkedList();
@@ -123,6 +127,9 @@ unsigned int LinkedList<T>::getCount() const {
 
 template<typename T>
 Node<T>::Node* LinkedList<T>::getHead() {
+	if (head == nullptr) {
+		return nullptr;
+	}
 	return head;
 }
 
