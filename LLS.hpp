@@ -40,7 +40,7 @@ T LLS<T>::pop() {
 
 template<typename T>
 T LLS<T>::peek() const {
-    T data = list.getHead();
+    T data = list.getHead()->getData();
     return data;
 }
 

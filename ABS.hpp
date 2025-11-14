@@ -128,9 +128,6 @@ public:
             delete[] array_;
             array_ = new_array;
         }
-        /*if (curr_size_ <= capacity_/4) {
-            capacity_ /= 2;
-        }*/
         return value;
     }
 

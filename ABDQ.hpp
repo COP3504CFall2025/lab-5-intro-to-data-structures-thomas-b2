@@ -99,21 +99,106 @@ public:
         back_ = 0;
     }
 
+    void ensureCapacity(ABDQ& abdq) {
+        abdq.capacity_ *= 2;
+    }
+    void shrinkIfNeeded(ABDQ& abdq) {
+        abdq.capacity_ /= 2;
+    }
+
     // Insertion
     void pushFront(const T& item) override {
-
+        if (size_ == capacity_) {
+            ensureCapacity(this);
+            T* new_data_ = new T[capacity_];
+            for (int i = size_ - 1; i >= 0; i--) {
+                new_data_[i+1] = data_[i];
+            }
+            delete[] data_;
+            data_ = new_data_;
+        }
+        else {
+            for (size_t i = size_; i > 0; i--) {
+                data_[i] = data_[i - 1];
+            }
+        }
+        data_[0] = item;
+        size_++;
     }
-    void pushBack(const T& item) override;
+    void pushBack(const T& item) override {
+        if (size_ == capacity_) {
+            ensureCapacity(this);
+            T* new_array = new T[capacity_];
+            for (size_t i = 0; i < size_; i++) {
+                new_array[i] = data_[i];
+            }
+            delete[] data_;
+            data_ = new_array;
+        }
+        data_[size_] = item;
+        size_++;
+    }
 
     // Deletion
-    T popFront() override;
-    T popBack() override;
+    T popFront() override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABS");
+        }
+        T data = data_[0];
+        for (size_t i = 0; i < size_ - 1; i++) {
+            data_[i] = data_[i + 1];
+        }
+        data_[size_ - 1] = T();
+        size_--;
+        if (size_ <= capacity_/4) {
+            shrinkIfNeeded(this);
+            T* new_array = new T[capacity_];
+            for (size_t i = 0; i < size_; i++) {
+                new_array[i] = data_[i];
+            }
+            delete[] data_;
+            data_ = new_array;
+        }
+        if (size_ <= capacity_/4) {
+            shrinkIfNeeded(this);
+        }
+        return data;
+    }
+    T popBack() override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABS");
+        }
+        T value = data_[size_ - 1];
+        size_--;
+        if (size_ <= capacity_/4) {
+            shrinkIfNeeded(this);
+            T* new_array = new T[capacity_];
+            for (size_t i = 0; i < size_; i++) {
+                new_array[i] = data_[i];
+            }
+            delete[] data_;
+            data_ = new_array;
+        }
+        return value;
+    }
 
     // Access
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABS");
+        }
+        return data_[0];
+    }
+    const T& back() const override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABS");
+        }
+        return data_[size_ - 1];
+    }
 
     // Getters
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override {
+        return size_;
+    }
 
 };
