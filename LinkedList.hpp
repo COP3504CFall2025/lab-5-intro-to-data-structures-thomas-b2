@@ -12,6 +12,9 @@ struct Node {
 template <typename T>
 class LinkedList {
 public:
+	void clear() { //autograder shenanigans
+		Clear();
+	}
 	// Behaviors
 	void printForward() const {
 		for (Node<T>* node = head; node != nullptr; node = node->next) {
