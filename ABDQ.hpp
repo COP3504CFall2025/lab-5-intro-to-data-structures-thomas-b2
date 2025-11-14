@@ -168,7 +168,7 @@ public:
         T value = data_[size_ - 1];
         size_--;
         if (size_ <= capacity_/4) {
-            shrinkIfNeeded(this);
+            shrinkIfNeeded();
             T* new_array = new T[capacity_];
             for (size_t i = 0; i < size_; i++) {
                 new_array[i] = data_[i];
