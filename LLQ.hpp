@@ -34,14 +34,14 @@ void LLQ<T>::enqueue(const T &item) {
 
 template<typename T>
 T LLQ<T>::dequeue() {
-    T data = list.getHead();
+    T data = list.getHead()->getData();
     list.removeHead();
     return data;
 }
 
 template<typename T>
 T LLQ<T>::peek() const {
-    T data = list.getHead();
+    T data = list.getHead()->getData();
     return data;
 }
 

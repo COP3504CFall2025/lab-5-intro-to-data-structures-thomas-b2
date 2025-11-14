@@ -34,35 +34,37 @@ public:
 };
 
 template<typename T>
-void LLDQ<T>::pushFront(const T &item) {
+void LLDQ<T>::pushFront(const T& item) {
     list.addHead(item);
 }
 
 template<typename T>
-void LLDQ<T>::pushBack(const T &item) {
+void LLDQ<T>::pushBack(const T& item) {
     list.addTail(item);
 }
 
 template<typename T>
 T LLDQ<T>::popFront() {
-    T data = list.getHead();
+    T data = list.getHead()->getData();
     list.removeHead();
+    return data;
 }
 
 template<typename T>
 T LLDQ<T>::popBack() {
-    T data = list.getTail();
+    T data = list.getTail()->getData();
     list.removeTail();
+    return data;
 }
 
 template<typename T>
 const T& LLDQ<T>::front() const {
-    return list.getHead();
+    return list.getHead()->getData();
 }
 
 template<typename T>
 const T& LLDQ<T>::back() const {
-    return list.getTail();
+    return list.getTail()->getData();
 }
 
 template<typename T>
