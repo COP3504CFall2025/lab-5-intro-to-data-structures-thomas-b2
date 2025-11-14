@@ -28,16 +28,16 @@ public:
 	[[nodiscard]] unsigned int getCount() const {
 		return count;
 	}
-	Node<T>::Node* getHead() {
+	Node<T>* getHead() {
 		return head;
 	}
-	const Node<T>::Node* getHead() const {
+	const Node<T>* getHead() const {
 		return head;
 	}
-	Node<T>::Node* getTail() {
+	Node<T>* getTail() {
 		return tail;
 	}
-	const Node<T>::Node* getTail() const {
+	const Node<T>* getTail() const {
 		return tail;
 	}
 
