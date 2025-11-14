@@ -33,14 +33,14 @@ void LLS<T>::push(const T &item) {
 
 template<typename T>
 T LLS<T>::pop() {
-    T data = list.getHead()->getData();
+    T data = list.getHead()->data;
     list.removeHead();
     return data;
 }
 
 template<typename T>
 T LLS<T>::peek() const {
-    T data = list.getHead()->getData();
+    T data = list.getHead()->data;
     return data;
 }
 

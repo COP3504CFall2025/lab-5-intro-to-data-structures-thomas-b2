@@ -45,26 +45,26 @@ void LLDQ<T>::pushBack(const T& item) {
 
 template<typename T>
 T LLDQ<T>::popFront() {
-    T data = list.getHead()->getData();
+    T data = list.getHead()->data;
     list.removeHead();
     return data;
 }
 
 template<typename T>
 T LLDQ<T>::popBack() {
-    T data = list.getTail()->getData();
+    T data = list.getTail()->data;
     list.removeTail();
     return data;
 }
 
 template<typename T>
 const T& LLDQ<T>::front() const {
-    return list.getHead()->getData();
+    return list.getHead()->data;
 }
 
 template<typename T>
 const T& LLDQ<T>::back() const {
-    return list.getTail()->getData();
+    return list.getTail()->data;
 }
 
 template<typename T>
